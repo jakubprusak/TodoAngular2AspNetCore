@@ -1,0 +1,22 @@
+﻿<h1>todos</h1>
+<p>Task List</p>
+<p *ngIf="!todos">
+    <em>Loading...</em>
+</p>
+<table class='table' *ngIf="todos">
+    <thead>
+    <tr>
+        <th>Name</th>
+        <th>Done</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let todo of todos">
+        <td>{{ todo.name }}</td>
+        <td><input  [checked]="todo.done" type="checkbox" value="{{todo.done}}" (change)="changeStatusTask(todo)" /></td>
+        <td><button type="button" class="btn btn-danger"(click)="deleteTodo(todo);">Delete</button></td>
+    </tr>
+    </tbody>
+</table>
+
+<todo-form (notifyTodos)="addEvent($event)"></todo-form>

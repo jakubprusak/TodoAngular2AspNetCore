@@ -1,0 +1,20 @@
+﻿
+<form class="form-horizontal col-md-12 center-block" #todoForm="ngForm">
+    <h2>Add new todo</h2>
+    <input type="hidden" name="todoId" [(ngModel)]="todo.todoId"/>
+
+    <div class="form-group">
+        <input type="text" class="form-control input-lg" placeholder="name" [(ngModel)]="todo.name"
+               name="name" #name="ngModel" required minlength="3">
+        <div [hidden]="name.valid || name.untouched" class="alert alert-danger">
+            name is required or < 3
+        </div>
+    </div>
+    <div class="form-group">
+        <input type="checkbox" class="form-control input-lg" [(ngModel)]="todo.done"
+               name="done" #done="ngModel">
+    </div>
+    <div class="form-group">
+        <button class="btn btn-primary btn-lg btn-block" (click)="addTask(todo)" [disabled]="!todoForm.form.valid">Save</button>
+    </div>
+</form>
